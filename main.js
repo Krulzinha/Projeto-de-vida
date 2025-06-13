@@ -22,11 +22,7 @@ botoes[i].onclick= function () {
 
     const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
 
-    contadores[0]. textContent= calculaTempo(tempos[0]);
     
-    for (let i=0; i<contadores.length;i++) {}
-
-
     fuction calculaTempo(tempoObjetivo) {
         let tempoAtual = new Date();
         let tempoFinal =tempoObjetivo - tempoAtual;
@@ -34,13 +30,26 @@ botoes[i].onclick= function () {
         let minutos = Math.floor(segunods / 60);
         let horas = Math.floor(minutos / 60);
         let dias = Math.floor(horas / 24);
-
+        
         segundos %= 60;
         minutos %= 60;
         horas %= 24;
-
-        return dias + "dias " + horas + "horas" + minutos + " minutos " + segundos " segundos ";
+        if(tempoFinal > 0){
+            return dias + "dias " + horas + "horas" + minutos + " minutos " + segundos " segundos ";
+        } else {
+            return "Prazo Finalizado"; 
+        }
     }
-
-
-
+    
+    function atualizaCronometro(){
+        for (let i=0; i<contadores.length;i+) {
+            contadores[i]. textContent= calculaTempo(tempos[i]);
+        }
+    } 
+    
+    function comecaCronometro(){
+       atualizaCronometro();
+       setInterval(atualizaCronometro,1000); 
+    }
+    comecaCronometro();
+   
